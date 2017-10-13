@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:onClick="showGps"
         android:text="GPS"
+        android:layout_alignLeft="@id/showView"
         />
 
 

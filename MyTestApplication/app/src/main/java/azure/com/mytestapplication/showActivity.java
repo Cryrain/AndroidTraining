@@ -36,16 +36,13 @@ public class showActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
-
-
         Intent intent = getIntent();
 
         String text = intent.getStringExtra(TestMainActivity.EXTRA_MESSAGE);
 
 
-
-        TextView showView = (TextView)findViewById(R.id.showView);
-        showView.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.text_size));
+        TextView showView = (TextView) findViewById(R.id.showView);
+        showView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_size));
         showView.setText(text);
     }
 
@@ -65,18 +62,17 @@ public class showActivity extends AppCompatActivity {
 
     }
 
-    private class LocationTracker implements LocationListener{
+    private class LocationTracker implements LocationListener {
 
         @Override
         public void onLocationChanged(Location location) {
             double longitude = location.getLongitude();
             double laititude = location.getLatitude();
 
-            Log.v("Longitude",""+longitude);
-            Log.v("laititude",""+laititude);
+            Log.v("Longitude", "" + longitude);
+            Log.v("laititude", "" + laititude);
 
-            Toast.makeText(getBaseContext(), "经度:"+longitude + " /n纬度:" + laititude,Toast.LENGTH_SHORT);
-
+            Toast.makeText(getBaseContext(), "经度:" + longitude + " /n纬度:" + laititude, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -97,38 +93,32 @@ public class showActivity extends AppCompatActivity {
     }
 
 
-
-    public void showGps(View view){
-        Log.v("showGps:","show gps start");
-
-
+    public void showGps(View view) {
+        Log.v("showGps:", "show gps start");
 
 
         boolean b2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
-        Log.v("not use2",b2+"");
+        Log.v("not use2", b2 + "");
 
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         int i = 1;
 
-        if(location == null){
-            location =locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (location == null) {
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             i = 2;
         }
 
 
+        double longitude = location.getLongitude();
+        double laititude = location.getLatitude();
 
-            double longitude = location.getLongitude();
-            double laititude = location.getLatitude();
-
-            Log.v("longitude:", ""+longitude);
-            Log.v("laititude:",""+laititude);
-
-
-            Toast toast = Toast.makeText(getBaseContext(),"longitude"+i+": "+longitude+"/n"+" laititude"+i+":"+laititude,Toast.LENGTH_SHORT);
-            toast.show();
+        Log.v("longitude:", "" + longitude);
+        Log.v("laititude:", "" + laititude);
 
 
+        Toast toast = Toast.makeText(getBaseContext(), "longitude" + i + ": " + longitude + "/n" + " laititude" + i + ":" + laititude, Toast.LENGTH_SHORT);
+        toast.show();
 
 
     }
