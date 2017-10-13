@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="azure.com.mytestapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +29,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="azure.com.mytestapplication.TestMainActivity" />
         </activity>
+
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+        <uses-feature android:name="android.hardware.location.gps" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     </application>
 
 </manifest>
