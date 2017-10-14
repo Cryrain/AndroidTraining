@@ -19,6 +19,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+
 public class showActivity extends AppCompatActivity {
 
     private LocationManager locationManager;
@@ -115,9 +119,36 @@ public class showActivity extends AppCompatActivity {
 
         Log.v("longitude:", "" + longitude);
         Log.v("laititude:", "" + laititude);
+        DateFormat format = new SimpleDateFormat("yyyyMMdd  HH:mm:ss");
+        String time = format.format(location.getTime());
+
+        Log.v("time:",""+time);
 
 
-        Toast toast = Toast.makeText(getBaseContext(), "longitude" + i + ": " + longitude + "/n" + " laititude" + i + ":" + laititude, Toast.LENGTH_SHORT);
+        GPSLocation g2 = new GPSLocation(111.00052758,35.04096467);
+        GPSLocation g1 = new GPSLocation(longitude,laititude);
+
+        Double distance = Tools.caculateDistance(g1,g2);
+
+        boolean isWarning = false;
+
+
+        if (distance<Tools.WARNING_DISTANCE){
+            isWarning = true;
+        }
+
+
+
+        String warningStr = isWarning?"警告，附近有危险":"";
+
+
+
+        String toastText = "longitude" + i + ": " + longitude + "/n" + " laititude" + i + ":" + laititude;
+        toastText = toastText + "time:"+ time  + "  距离："+ distance;
+        toastText = toastText + warningStr;
+
+
+        Toast toast = Toast.makeText(getBaseContext(),toastText , Toast.LENGTH_SHORT);
         toast.show();
 
 
